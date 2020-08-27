@@ -1,0 +1,32 @@
+﻿@model  ASP_.NET_CORE_AdamFreeman.Models.GuestResponse
+@{
+    ViewData["Title"] = "MyView";
+    Layout = "_Layout";
+}
+
+<h1>RsvpForm</h1>
+<form asp-action="RsvpForm" method="post">
+    <div asp-validation-summary="All"></div>
+    <P>
+        <label asp-for="Name">Your name:</label>
+        <input asp-for="Name" />
+    </P>
+    <P>
+        <label asp-for="Email">Your email:</label>
+        <input asp-for="Email" />
+    </P>
+    <P>
+        <label asp-for="Phone">Your phone:</label>
+        <input asp-for="Phone" />
+    </P>
+    <P>
+        <label>Will you attend?</label>
+        <select asp-for="WillAttend">
+            <option value="">Choose an option</option>
+            <option value="true">Yes, I'll be there</option>
+            <option value="false">No, I can't come</option>
+        </select>
+    </P>
+    <button type="submit">Submit RSVP</button>
+</form>
+

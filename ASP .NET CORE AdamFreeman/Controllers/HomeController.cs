@@ -18,20 +18,34 @@ namespace ASP_.NET_CORE_AdamFreeman.Controllers
             _logger = logger;
         }
 
-        public IActionResult Index()
+        public ViewResult Index()
+        {
+            int hour = DateTime.Now.Hour;
+            ViewBag.Message = hour < 12 ? "Good Morning" : "Good Afternoon";
+            return View("MyView");
+        }
+
+        public ViewResult RsvpForm()
         {
             return View();
         }
-
-        public IActionResult Privacy()
+        [HttpPost]
+        public ViewResult RsvpForm(GuestResponse response)
         {
-            return View();
+            if (ModelState.IsValid)
+            {
+                Repository.AddResponse(response);
+                return View("Thanks", response);
+            }
+            else
+            {
+                return View();
+            }
+
         }
-
-        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-        public IActionResult Error()
+        public ViewResult ListResponses()
         {
-            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+            return View(Repository.Responses.Where(r => r.WillAttend == true));
         }
     }
 }
