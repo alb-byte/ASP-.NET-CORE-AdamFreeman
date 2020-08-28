@@ -12,7 +12,6 @@ namespace ASP_.NET_CORE_AdamFreeman.Models
         [MaxLength(8,ErrorMessage = "Имя не должно превышать 8 символов")]
         public string Name { get; set; }
         [Required(ErrorMessage = "Почта обязательна")]
-        [RegularExpression(".+\\0.+\\..+", ErrorMessage = "Почта имеет не правильный формат")]
         public string Email { get; set; }
         [Required(ErrorMessage = "Телефон обязателен")]
         public string Phone { get; set; }

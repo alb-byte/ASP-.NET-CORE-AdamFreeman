@@ -12,10 +12,14 @@ namespace ASP_.NET_CORE_AdamFreeman.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
-
+        public IRepository Repository = MyRepository.SharedRepository;
         public HomeController(ILogger<HomeController> logger)
         {
             _logger = logger;
+        }
+        public HomeController()
+        {
+
         }
 
         public ViewResult Index()
